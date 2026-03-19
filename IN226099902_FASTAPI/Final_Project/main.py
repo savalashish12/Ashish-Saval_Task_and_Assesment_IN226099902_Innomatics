@@ -123,3 +123,4 @@ def get_bookings():
         "total":len(bookings),
         "total_revenue":sum(b["final_cost"] for b in bookings)
     }
+
