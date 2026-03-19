@@ -124,3 +124,50 @@ def get_bookings():
         "total_revenue":sum(b["final_cost"] for b in bookings)
     }
 
+# _______Question 6 to Question 9 Book Ticket_____________
+
+@app.post("/bookings")
+def book_ticket(data:BookingRequest):
+    global booking_counter
+
+    movie = find_movie(data.movie_id)
+    if not movie:
+        raise HTTPException(404,"Movie not found")
+
+    if movie["seats_available"] < data.seats:
+        raise HTTPException(400,"Not enough seats")
+
+    original, final = calculate_ticket_cost(
+        movie["ticket_price"], data.seats, data.seat_type, data.promo_code
+    )
+
+    movie["seats_available"] -= data.seats
+
+    booking = {
+        "booking_id":booking_counter,
+        "customer":data.customer_name,
+        "movie":movie["title"],
+        "seats":data.seats,
+        "seat_type":data.seat_type,
+        "original_cost":original,
+        "final_cost":final
+    }
+
+    bookings.append(booking)
+    booking_counter += 1
+
+    return booking
+
+# Question 10- Filter movies
+
+@app.get("/movies/filter")
+def filter_movies(
+    genre:str=Query(None),
+    language:str=Query(None),
+    max_price:int=Query(None),
+    min_seats:int=Query(None)
+):
+    return{"results":filter_movies_logic(genre,language,max_price,min_seats)}
+
+
+# Question 11 Add Movie 
