@@ -10,3 +10,5 @@ practise.ipynb
 practisedemo/
 .env/
 .env
+venv/
+.env
