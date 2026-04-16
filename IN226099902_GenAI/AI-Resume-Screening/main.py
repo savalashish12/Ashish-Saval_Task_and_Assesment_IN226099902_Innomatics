@@ -55,16 +55,7 @@ def process_resume(pdf_path, jd):
     )
 
     score_data = safe_json_parse(score_raw)
-    # score_data = safe_json_parse(score_raw)
-    # score = score_data.get("score", 0)
-    # exp = extracted.get("experience_years", 0)
 
-    # if exp >= 3:
-    #     score += 10
-    # elif exp < 1:
-    #     score -= 10
-
-    # score_data["score"] = round(score, 2)
 
     # STEP 6: Explain
     explanation = explain_chain.invoke(
