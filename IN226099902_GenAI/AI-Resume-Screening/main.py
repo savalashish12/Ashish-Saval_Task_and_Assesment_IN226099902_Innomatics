@@ -1,4 +1,5 @@
 import os
+import sys
 os.makedirs("Outputs", exist_ok=True)
 
 from utils.parser import read_pdf
@@ -33,10 +34,9 @@ def process_resume(pdf_path, jd):
     jd_data = safe_json_parse(jd_raw)
 
     # STEP 4: Match
-    match_raw = match_chain.invoke(
-        {
-            "jd": jd_data,
-            "candidate": extracted
+    match_raw = match_chain.invoke({
+        "required_skills": jd_data.get("required_skills", []),
+        "candidate_skills": extracted.get("skills", [])
         },
         config={"tags": ["match"]}
     )
@@ -49,20 +49,22 @@ def process_resume(pdf_path, jd):
                 "jd": jd_data,
                 "match": matched,
                 "candidate": extracted
-            }
+                }
         },
         config={"tags": ["score"]}
     )
+
     score_data = safe_json_parse(score_raw)
-    score = score_data.get("score", 0)
-    exp = extracted.get("experience_years", 0)
+    # score_data = safe_json_parse(score_raw)
+    # score = score_data.get("score", 0)
+    # exp = extracted.get("experience_years", 0)
 
-    if exp >= 3:
-        score += 10
-    elif exp < 1:
-        score -= 10
+    # if exp >= 3:
+    #     score += 10
+    # elif exp < 1:
+    #     score -= 10
 
-    score_data["score"] = round(score, 2)
+    # score_data["score"] = round(score, 2)
 
     # STEP 6: Explain
     explanation = explain_chain.invoke(
@@ -84,12 +86,15 @@ if __name__ == "__main__":
 
     # 🔥 FIX JD PDF READING
     jd = read_pdf("data/Job Description - Data Scientist.pdf")
-
-    resumes = [
-        "data/resumes/Nitin Satarkar.pdf",
-        "data/resumes/Ashish Saval.pdf",
-        "data/resumes/Ram Kachare.pdf"
-    ]
+    
+    if len(sys.argv) > 1:
+        resumes = [sys.argv[1]]
+    else:
+        resumes = [
+            "data/resumes/Nitin Satarkar.pdf",
+            "data/resumes/Ashish Saval.pdf",
+            "data/resumes/Ram Kachare.pdf"
+        ]
 
     for resume in resumes:
         print(f"\nProcessing: {resume}")

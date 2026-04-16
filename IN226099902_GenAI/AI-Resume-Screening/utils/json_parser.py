@@ -6,4 +6,10 @@ def safe_json_parse(text):
         cleaned = re.sub(r"```json|```", "", text).strip()
         return json.loads(cleaned)
     except:
-        return {"error": "Invalid JSON", "raw": text}
+        def safe_json_parse(text):
+            try:
+                cleaned = re.sub(r"```json|```", "", text).strip()
+                return json.loads(cleaned)
+            except:
+                print("⚠️ JSON ERROR:", text)
+                return {}

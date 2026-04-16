@@ -9,6 +9,8 @@ Return STRICT JSON:
 }}
 
 DO NOT assume anything.
+DO NOT add explanation text.
+DO NOT add anything outside JSON.
 
 Job Description:
 {jd}

@@ -1,0 +1,10 @@
+Resume: data/resumes/Ashish Saval.pdf
+
+Score: {'score': 73.68}
+
+Explanation:
+**Score Breakdown:**
+
+* **Matched Skills:** 14 out of 20 required skills are matched.
+* **Missing Important Skills:** Matplotlib, OpenAI API, HuggingFace, Git / GitHub, Jupyter Notebook.
+* **Experience Impact:** With 4.5 years of experience, the candidate's score is 73.68.

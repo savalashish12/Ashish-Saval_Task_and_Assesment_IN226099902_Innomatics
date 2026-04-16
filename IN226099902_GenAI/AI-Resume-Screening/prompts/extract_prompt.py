@@ -22,6 +22,9 @@ Rules:
 - Convert experience to number (e.g., 2.5 years → 2.5)
 - If fresher → 0
 - Do NOT leave skills empty if present
+- Return only JSON. No explanation text.
+- DO NOT add explanation text.
+- DO NOT add anything outside JSON.
 
 Resume:
 {resume}

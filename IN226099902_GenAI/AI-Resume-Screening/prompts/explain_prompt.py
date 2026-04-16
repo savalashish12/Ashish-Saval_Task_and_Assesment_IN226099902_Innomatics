@@ -12,4 +12,7 @@ DO NOT say "not available" if data exists.
 
 Data:
 {data}
+
+Be concise and structured.
+Avoid unnecessary text.
 """)

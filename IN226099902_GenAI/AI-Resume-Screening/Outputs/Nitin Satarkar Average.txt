@@ -1,0 +1,10 @@
+Resume: data/resumes/Nitin Satarkar.pdf
+
+Score: {'score': 10.0}
+
+Explanation:
+**Score Breakdown:**
+
+* **Matched Skills Count:** 2 ('Python', 'SQL')
+* **Missing Important Skills:** 18 ('Pandas', 'NumPy', 'Scikit-learn', 'TensorFlow', 'PyTorch', 'XGBoost', 'LightGBM', 'Matplotlib', 'LangChain', 'OpenAI API', 'HuggingFace', 'FastAPI', 'REST APIs', 'MLflow', 'LangSmith', 'Docker', 'Git / GitHub', 'Jupyter Notebook')
+* **Experience Impact:** 0.5 years of experience, which is relatively low and may impact the overall score.
